@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+  <div class="modal-content">
+  <div class="container" style="margin-top: 100px;text-align: center">
+  {% if single %}
+    {% for ass in single %}
+
+      <div class="close-modal" data-dissmiss="modal" align="right">
+        <a href="{% url 'home' %}" class="btn btn-primary" style="background-color: red; border-color: red" data-dismiss="modal" type="button">
+            <i class="fas fa-times"></i></a>
+      </div>
+       <h2 class="text-uppercase">{{ ass.project_name }}</h2>
+           <p class="item-intro text-muted">{{ ass.p_subtitle }}</p>
+                 <br><img class="img-fluid d-block mx-auto" src="{{ ass.p_photo.url }}" alt="" width="600px" height="650px"><br><br/>
+                <div class="align-content-center" style="text-align-all: center;margin-left: 250px;margin-right: 250px">
+                  <h5> {{ ass.p_conent }}</h5>
+                 </div>
+                 <br><br>
+                <ul class="list-inline">
+                  <li> Used Technology: {{ ass.used_technology}}</li>
+                  <li> Date: {{ ass.p_date }}</li>
+                  <li>Client: {{ ass.p_client }}</li>
+                  <li>Category: {{ ass.p_category }}</li>
+                </ul>
+                  <a href="{% url 'home' %}" class="btn btn-primary" style="background-color: red; border-color: red" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Project</a>
+    {% endfor %}
+     {% else %}
+    <p> do nothing </p>
+{% endif %}
+    </div>
+</div>
+    </div>
+<br><br><br>
+{% endblock %}

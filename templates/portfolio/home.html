@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+  <!-- Header -->
+  <header class="masthead">
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-lead-in">Welcome To Our World!</div>
+        <div class="intro-heading text-uppercase">Nice To Meet You Buddy!!</div>
+        <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger" style="background-color: #007bff; border-color: #007bff" href="#contact">Tell Me More</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section class="page-section" id="services">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Services</h2>
+          <h3 class="section-subheading text-muted">Find out our cool services!</h3>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">{{ service.0.s_name }}</h4>
+          <p class="text-muted">{{ service.0.s_content }}</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">{{ service.1.s_name }}</h4>
+          <p class="text-muted">{{ service.1.s_content }}</p>
+        </div>
+        <div class="col-md-4">
+          <span class="fa-stack fa-4x">
+            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+            <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+          </span>
+          <h4 class="service-heading">{{ service.2.s_name }}</h4>
+          <p class="text-muted">{{ service.2.s_content }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+   <!-- Portfolio Grid -->
+  <section class="bg-light page-section" id="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Portfolio</h2>
+          <h3 class="section-subheading text-muted">Exibhition of Our Work</h3>
+        </div>
+      </div>
+      <div class="row">
+        {% if portfolio %}
+            {% for p in portfolio %}
+        <div class="col-md-4 col-sm-6 portfolio-item">
+            <div class="card" style="width: 18rem;">
+                {% if p.p_photo %}
+                 <a href="portfolio/{{ p.id }}" ><img src="{{ p.p_photo.url }}" class="card-img-top" alt="..."></a>
+                {% endif %}
+          <div class="card-body" style="text-align: center">
+           <h5  class="card-title">{{ p.project_name }}</h5>
+           <p class="card-text">{{ p.p_title }}</p>
+           <a href="portfolio/{{ p.id }}" class="btn btn-primary">Go for Details</a>
+          </div>
+         </div>
+        </div>
+            {% endfor %}
+            {% else %}
+            <h1>There is no protfolio</h1>
+          {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+
+  <section class="page-section" id="about">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">About</h2>
+          <h3 class="section-subheading text-muted">okay</h3>
+        </div>
+      </div>
+    {% if about %}
+      {% for a in about %}
+      <div class="row">
+        <div class="col-lg-12">
+          <ul class="timeline">
+            <li>
+              <div class="timeline-image"style="background-color: white">
+                <img style="border: 7px solid #e9ecef;background: #e9ecef" class="rounded-circle " src="{{ a.a_photo.url }}" alt="" width="168px" height="180">
+              </div>
+              <div class="timeline-panel">
+                <div class="timeline-heading">
+                  <h4>{{a.a_date}}</h4>
+                  <h4 class="subheading">{{a.a_title}}</h4>
+                </div>
+                <div class="timeline-body">
+                  <p class="text-muted">{{a.a_content}}</p>
+                </div>
+              </div>
+            </li>
+      {% endfor %}
+         {% else %}
+         <p> do nothing </p>
+    {% endif %}
+              </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Team -->
+  <section class="bg-light page-section" id="team">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Our Amazing Team</h2>
+          <h3 class="section-subheading text-muted">This team is combine of these asset!</h3>
+        </div>
+      </div>
+      <div class="row">
+          {% if team %}
+          {% for t in team %}
+        <div class="col-sm-4">
+          <div class="team-member">
+            <img class="mx-auto rounded-circle" src="{{ t.member_photo.url }}" alt="" width="225px" height="225px">
+            <h4>{{ t.member_name }}</h4>
+            <p class="text-muted">{{ t.member_deg }}</p>
+            <ul class="list-inline social-buttons">
+              <li class="list-inline-item">
+                <a href="{{ t.twitter }}">
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{{ t.fb}}">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="{{ t.linkedin }}">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+          {% endfor %}
+          {% else %}
+              <p> do nothing </p>
+       {% endif %}
+          </div>
+    </div>
+  </section>
+
+
+  <!-- Clients -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="{% static 'img/logos/envato.jpg' %}" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="{% static 'img/logos/designmodo.jpg' %}" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="{% static 'img/logos/themeforest.jpg' %}" alt="">
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="#">
+            <img class="img-fluid d-block mx-auto" src="{% static 'img/logos/creative-market.jpg' %}" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+ <!-- <section class="page-section" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Contact Us</h2>
+          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <form id="contactForm" name="sentMessage" novalidate="novalidate">
+                <form action="{% url 'contact' %}" id="contact_form" class="contact_form text-center" method="POST">
+                 {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+
+                  <input class="form-control"  name="c_name" type="text" placeholder="Your Name *" required="required" data-validation-required-message="Please enter your name." >
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control"  name="c_email" type="email" placeholder="Your Email *" required="required" data-validation-required-message="Please enter your email address.">
+                  <p class="help-block text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <input class="form-control"  name="c_phone" type="tel" placeholder="Your Phone *" required="required" data-validation-required-message="Please enter your phone number.">
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <textarea class="form-control"  name="c_message" placeholder="Your Message *" required="required" data-validation-required-message="Please enter a message."></textarea>
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-lg-12 text-center">
+                <div id="success"></div>
+                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
+              </div>
+            </div>
+          </form>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section> -->
+<!-- Contact -->
+  <section class="page-section" id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase" >Contact Us</h2>
+          <h3 class="section-subheading text-muted">Feel free to contact with us!</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <form id="contactForm"   action="{% url 'contact' %}" method="POST">
+            {% csrf_token %}
+              <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input name="name" class="form-control" id="name" type="text" placeholder="Your Name *" required="required">
+
+                </div>
+                    <div class="form-group">
+                  <input class="form-control" name="email"  type="email" placeholder="Your Email">
+
+                </div>
+                <div class="form-group">
+                  <input class="form-control" name="phone" id="phone" type="tel" placeholder="Your Phone *" required="required">
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <textarea class="form-control" name="message" id="message" placeholder="Your Message *" required="required"></textarea>
+
+                </div>
+              </div>
+              <div class="clearfix"></div>
+              <div class="col-lg-12 text-center">
+                <div id="success"></div>
+                <button id="sendMessageButton" class="btn btn-primary btn-xl text-uppercase" type="submit">Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+      <!-- Portfolio Modals -->
+
+  <!-- Modal 1 -->
+
+  <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+          <div class="lr">
+            <div class="rl"></div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 mx-auto">
+              <div class="modal-body">
+                <!-- Project Details Go Here -->
+                <h2 class="text-uppercase"></h2>
+                <p class="item-intro text-muted"></p>
+                <img class="img-fluid d-block mx-auto" src="{% static 'media/22._Windows_Logo.jpg' %}" alt="">
+                <p></p>
+                <ul class="list-inline">
+                  <li></li>
+                  <li>Client:</li>
+                  <li>Category:</li>
+                </ul>
+                <button class="btn btn-primary" data-dismiss="modal" type="button">
+                  <i class="fas fa-times"></i>
+                  Close Project</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+{% endblock %}
